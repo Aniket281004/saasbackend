@@ -14,6 +14,17 @@ public class AuthService {
     public AuthService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+    public String login(String email, String password) {
+    User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+    if (!encoder.matches(password, user.getPassword())) {
+        throw new RuntimeException("Invalid credentials");
+    }
+
+    return JwtUtil.generateToken(user.getEmail());
+}
+
 
     public User register(String email, String password) {
         if (userRepository.findByEmail(email).isPresent()) {
