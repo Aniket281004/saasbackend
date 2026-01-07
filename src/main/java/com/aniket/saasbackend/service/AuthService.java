@@ -1,7 +1,9 @@
 package com.aniket.saasbackend.service;
 
+
 import com.aniket.saasbackend.model.User;
 import com.aniket.saasbackend.repository.UserRepository;
+import com.aniket.saasbackend.util.JwtUtil;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
